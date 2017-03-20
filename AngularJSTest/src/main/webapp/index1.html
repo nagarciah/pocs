@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="css/styles.css" rel="stylesheet" / >
+	<script type="text/javascript" src="js/angular.min.js"></script>
+	<!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script> -->
+	<script type="text/javascript">
+	  	var modulo1 = angular.module("modulo1",[]);
+		modulo1.controller("controlador1", function($scope){
+			$scope.sayHello = function(u){
+				alert(u.name);
+				u.greet = "Hello "+ u.name;
+			};
+		});
+	</script>
+  </head>
+  <body ng-app="modulo1">
+	<div ng-controller="controlador1">
+    	<h2>AngularJS Test</h2>
+		<input type="text" ng-model="user.name"/>
+		<button type="button" ng-click="sayHello(user)">Greet me</button>
+		<p>Name: {{user.name}}</p>
+    	<p>Greet: {{user.greet}}</p>
+	</div>
+  </body>
+</html>		

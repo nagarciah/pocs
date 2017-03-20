@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Matrix Admin</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/css/bootstrap-responsive.min.css" />
+<link rel="stylesheet" href="/css/colorpicker.css" />
+<link rel="stylesheet" href="/css/datepicker.css" />
+<link rel="stylesheet" href="/css/uniform.css" />
+<link rel="stylesheet" href="/css/select2.css" />
+<link rel="stylesheet" href="/css/matrix-style.css" />
+<link rel="stylesheet" href="/css/matrix-media.css" />
+<link rel="stylesheet" href="/css/bootstrap-wysihtml5.css" />
+<link href="/font-awesome/css/font-awesome.css" rel="stylesheet" />
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css' />
+</head>
+<body>
+
+<div th:include="menu :: all-controls"></div>
+
+<div id="content">
+<div id="content-header">
+  <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="tip-bottom">Administrar Plantillas</a> <a href="#" class="current">Cargar Plantillas</a> </div>
+  <h1>Cargar Plantillas</h1>
+</div>
+<div class="container-fluid">
+  <hr />
+  <div class="row-fluid">
+    <div class="span6">
+      <div class="widget-box">
+        <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+          <h5>Datos de la Plantilla</h5>
+        </div>
+        <div class="widget-content nopadding">
+          <form th:action="@{/templates/}" method="post" class="form-horizontal" enctype="multipart/form-data">
+            <div class="control-group">
+              <label class="control-label">Código :</label>
+              <div class="controls">
+                <input type="text" class="span11" placeholder="Cómo identificará la plantilla?" name ="customerTemplateId"/>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Nombre :</label>
+              <div class="controls">
+                <input type="text" class="span11" placeholder="Cual nombre le quiere dar en el sistema?" name="friendlyName"/>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Categoría :</label>
+              <div class="controls">
+                <input type="text"  class="span11" placeholder="Defina un nombre para clasificarla"  name="category"/>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Nombre del archivo HTML</label>
+              <div class="controls">
+                <span class="help-block">Es el archivo que tiene la estructura de su email</span>
+                <input type="text" class="span11" placeholder="ej: mi-plantilla.html" name="htmlFilename"/>
+              </div>
+            </div>
+            <!-- <div class="control-group">
+              <label class="control-label">Description field:</label>
+              <div class="controls">
+                <input type="text" class="span11" />
+                <span class="help-block">Description field</span> </div>
+            </div> -->
+            <div class="control-group">
+              <label class="control-label">Descripción</label>
+              <div class="controls">
+                <textarea class="span11" name="description" placeholder="Un texto que le ayude a otros para saber de que trata esta plantilla"></textarea>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Archivo ZIP con la plantilla</label>
+              <div class="controls">
+                <input type="file"  accept=".zip" name="templateZipFile"/>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-success">Guardar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="row-fluid">
+    <div class="widget-box">
+      <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+        <h5>wysihtml5</h5>
+      </div>
+      <div class="widget-content">
+        <div class="control-group">
+          <form>
+            <div class="controls">
+              <textarea class="textarea_editor span12" rows="6" placeholder="Enter text ..."></textarea>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div> -->
+</div></div>
+
+<div th:include="footer :: footer"></div>
+
+<script src="/js/jquery.min.js"></script> 
+<script src="/js/jquery.ui.custom.js"></script> 
+<script src="/js/bootstrap.min.js"></script> 
+<script src="/js/bootstrap-colorpicker.js"></script> 
+<script src="/js/bootstrap-datepicker.js"></script> 
+<script src="/js/jquery.toggle.buttons.js"></script> 
+<script src="/js/masked.js"></script> 
+<script src="/js/jquery.uniform.js"></script> 
+<script src="/js/select2.min.js"></script> 
+<script src="/js/matrix.js"></script> 
+<script src="/js/matrix.form_common.js"></script> 
+<script src="/js/wysihtml5-0.3.0.js"></script> 
+<script src="/js/jquery.peity.min.js"></script> 
+<script src="/js/bootstrap-wysihtml5.js"></script> 
+<script>
+	//$('.textarea_editor').wysihtml5();
+</script>
+</body>
+</html>

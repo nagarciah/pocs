@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!-- !DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd" -->
+<html lang="es-CO" 
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title th:text="#{register.form.title}">Crea tu cuenta</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<form action="#" method="post" th:action="@{/register.do}" th:object="${user}">
+		<fieldset>
+			<legend th:text="#{register.form.title}">Crea tu cuenta</legend>
+			<input th:placeholder="#{register.firstname}" type="text" th:field="*{firstname}" /> <br/>
+			<input th:placeholder="#{register.lastname}" type="text" th:field="*{lastname}" /><br/>
+			
+			<label th:text="#{register.birthday}" for="*{birthday}">Fecha de nacimiento</label>
+			<input type="text" th:field="*{birthday}" /><br/>
+			
+			<input th:placeholder="#{register.email}" type="text" th:field="*{email}" /><br/>
+			
+			<input th:placeholder="#{register.mobile}" type="text" th:field="*{mobile}" /><br/>
+			<input th:placeholder="#{register.alias}" type="text" th:field="*{alias}" /><br/>
+			
+			<label for="">Género</label>
+			<input type="text" th:field="*{gender}" /><br/>
+			
+			<input th:placeholder="#{register.location}" type="text" th:field="*{location}" /><br/>
+			<input th:placeholder="#{register.password}" type="text" th:field="*{password}" /><br/>
+			
+			<button type="submit" th:text="#{register.submit}"></button>
+			
+		</fieldset>
+	</form>
+	<p th:text="${result}">Resultado</p>
+</body>
+</html>

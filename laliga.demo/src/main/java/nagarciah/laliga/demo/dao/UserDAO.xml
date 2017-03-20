@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+http://www.javacodegeeks.com/2014/02/building-java-web-application-using-mybatis-with-spring.html
+http://www.codingpedia.org/ama/spring-mybatis-integration-example/#mybatis_config_file
+http://www.javacodegeeks.com/2012/02/mybatis-3-spring-integration-tutorial.html 
+-->
+
+<mapper namespace="nagarciah.laliga.demo.dao.UserDAO">
+
+    <resultMap id="result" type="user">
+        <id property="id" column="id"/>
+        <result property="firstname" column="firstname"/>
+        <result property="lastname" column="lastname"/>
+        <result property="birthday" column="birthday"/>
+        <result property="email" column="email"/>
+		<result property="mobile" column="mobile" />
+		<result property="alias" column="alias" />
+		<result property="gender" column="gender" />
+		<result property="location" column="location" />
+		<result property="password" column="password" />
+    </resultMap>
+
+    <select id="getAll" parameterType="int" resultMap="result">
+        SELECT 
+			*
+        FROM 
+			USER;
+    </select>
+
+    <insert id="insert" parameterType="user" useGeneratedKeys="true" keyProperty="id"> 
+		<!-- Ver: https://mybatis.github.io/mybatis-3/es/sqlmap-xml.html -->
+		<!-- buscar useGeneratedKeys=true, keyProperty="id", keyColumn="id" + columnas AUTO_INCREMENT en MySQL -->
+        INSERT INTO USER (firstname, lastname, birthday, email, mobile, alias, gender, location, password)
+        VALUE (#{firstname}, #{lastname}, #{birthday}, #{email}, #{mobile}, #{alias}, #{gender}, #{location}, #{password})
+    </insert>
+
+    <update id="update" parameterType="user">
+        UPDATE 
+			USER
+        SET
+		    firstname = #{firstname},
+		    lastname = #{lastname},
+		    birthday = #{birthday},
+		    email = #{email},
+			mobile = #{mobile},
+			alias = #{alias},
+			gender = #{gender},
+			location = #{location},
+			password = #{password}
+        WHERE 
+			id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="int">
+        DELETE FROM 
+			USER
+        WHERE 
+			id = #{id}
+    </delete>
+</mapper>

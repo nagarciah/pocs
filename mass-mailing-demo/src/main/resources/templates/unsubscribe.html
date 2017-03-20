@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Aldeamo Email</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/css/bootstrap-responsive.min.css" />
+<link rel="stylesheet" href="/css/matrix-style.css" />
+<link rel="stylesheet" href="/css/matrix-media.css" />
+<link href="/font-awesome/css/font-awesome.css" rel="stylesheet" />
+<link
+	href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800'
+	rel='stylesheet' type='text/css' />
+<script type="text/javascript">
+	function cancelUnsubscription(){
+		document.getElementById("form").style.visibility='hidden';
+		document.getElementById("cancelMessage").style.visibility='visible';
+	}
+</script>
+</head>
+<body>
+<div class="container-fluid">
+  <hr />
+  <div class="row-fluid">
+    <div class="span6">
+      <div class="widget-box">
+        <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+          <h5>Cancelar mi suscripción</h5>
+        </div>
+        <div class="widget-content nopadding">
+			<form id="form" class="form-horizontal" method="post"
+				enctype="multipart/form-data" th:action="@{/unsubscribe/}" th:object="${unsubscribeForm}">
+				<div class="control-group">
+					<label class="control-label">Confirme su email:</label>
+					<div class="controls">
+						<input class="span11" id="confirmedEmail" type="email" name="confirmedEmail" th:field="*{confirmedEmail}" />
+						<div th:if="${#fields.hasErrors('confirmedEmail')}" th:errors="*{confirmedEmail}"></div>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">Por qué no quiere recibir más
+						comunicaciones?</label>
+					<div class="controls">
+						<textarea class="span11" name="description"
+							placeholder="Lamentamos que se vaya. Cuéntenos cual es la razón?" th:field="*{userReason}"></textarea>
+						<div th:if="${#fields.hasErrors('userReason')}" th:errors="*{userReason}"></div>
+					</div>
+				</div>
+				<div class="form-actions">
+					<button type="button" class="btn btn-success" onclick="cancelUnsubscription()">Quiero seguir recibiendo email</button>
+					<button type="submit" class="btn btn-cancel">Cancelar mi suscripción</button>
+				</div>
+			</form>
+			<div id="cancelMessage" style="visibility:hidden">
+				<h3>Gracias por continuar con nosotros!</h3>
+			</div>
+		</div>
+	  </div>
+	</div>
+  </div>
+</div>
+</body>
+</html>

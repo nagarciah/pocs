@@ -1,0 +1,179 @@
+version: 1
+
+dn: dc=example,dc=com
+objectClass: domain
+objectClass: top
+dc: example
+
+dn: ou=users,dc=example,dc=com
+objectclass: organizationalUnit
+objectclass: top
+ou: users
+
+dn: uid=nromanov,ou=users,dc=example,dc=com
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+cn: nromanov
+sn: romanov
+displayName: Natasha Romanov
+mail: nromanov@shield.com
+telephoneNumber: 123456789
+uid: nromanov
+title: Black Widow
+labeledURI: 01.jpg
+
+dn: uid=srogers,ou=users,dc=example,dc=com
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+cn: srogers
+sn: rogers
+displayName: Steve Rogers
+mail: srogers@shield.com
+telephoneNumber: 3015004120
+uid: srogers
+title: Captain America
+labeledURI: 02.jpg
+
+dn: uid=tstark,ou=users,dc=example,dc=com
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+cn: tstark
+sn: stark
+displayName: Tony Stark
+mail: tstark@shield.com
+telephoneNumber: 3015004120
+uid: tstark
+title: Ironman
+labeledURI: 03.jpg
+
+dn: uid=todinson,ou=users,dc=example,dc=com
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+cn: todinson
+sn: odinson
+displayName: Thor Odinson
+mail: todinson@shield.com
+telephoneNumber: 3015004120
+uid: todinson
+title: Thor
+labeledURI: 04.jpg
+
+dn: uid=hpim,ou=users,dc=example,dc=com
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+cn: hpym
+sn: pym
+displayName: Dr. Henry J. 'Hank' Pym
+mail: hpym@shield.com
+telephoneNumber: 3015004120
+uid: hpym
+title: Ant-Man
+labeledURI: 05.jpg
+
+dn: uid=bbanner,ou=users,dc=example,dc=com
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+cn: bbanner
+sn: banner
+displayName: Bruce Banner
+mail: bbanner@shield.com
+telephoneNumber: 3015004120
+uid: bbanner
+title: Hulk
+labeledURI: 06.jpg
+
+dn: uid=cfbarton,ou=users,dc=example,dc=com
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+cn: cfbarton
+sn: barton
+displayName: Clinton Francis Barton
+mail: cfbarton@shield.com
+telephoneNumber: 3015004120
+uid: cfbarton
+title: Hawkeye
+labeledURI: 07.jpg
+
+dn: uid=pmaximoff,ou=users,dc=example,dc=com
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+cn: pmaximoff
+sn: maximoff
+displayName: Pietro Maximoff
+mail: pmaximoff@shield.com
+telephoneNumber: 3015004120
+uid: pmaximoff
+title: Quicksilver
+labeledURI: 08.jpg
+
+dn: uid=wmaximoff,ou=users,dc=example,dc=com
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+cn: wmaximoff
+sn: maximoff
+displayName: Wanda Maximoff
+mail: wmaximoff@shield.com
+telephoneNumber: 3015004120
+uid: wmaximoff
+title: Scarlet Witch
+labeledURI: 09.jpg
+
+dn: uid=vshade,ou=users,dc=example,dc=com
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+cn: vshade
+sn: shade
+displayName: Victor Shade
+mail: vshade@shield.com
+telephoneNumber: 3015004120
+uid: vshade
+title: Vision
+labeledURI: 10.jpg
+
+dn: uid=cdanvers,ou=users,dc=example,dc=com
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+cn: cdanvers
+sn: danvers
+displayName: Carol Susan Jane Danvers
+mail: cdanvers@shield.com
+telephoneNumber: 3015004120
+uid: cdanvers
+title: Ms Marvel
+labeledURI: 11.jpg
+
+dn: uid=pparker,ou=users,dc=example,dc=com
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+cn: pparker
+sn: parker
+displayName: Peter Benjamin Parker
+mail: pparker@shield.com
+telephoneNumber: 3015004120
+uid: pparker
+title: Spiderman
+labeledURI: 12.jpg

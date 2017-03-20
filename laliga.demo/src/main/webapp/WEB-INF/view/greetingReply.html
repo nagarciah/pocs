@@ -1,0 +1,19 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<p th:text="#{home.welcome}">Este texto será reemplazado por el mensaje del archivo de internacionalización</p>
+    <p th:text="'Hello, ' + ${name} + '!'" />
+    <p th:text="#{home.hello(${name})}" />
+    <h3 th:text="#{home.moreData}"></h3>
+    <ul>
+    	<li th:text="#{home.today(${execInfo.now}, ${execInfo.templateName})}">dd/mm/yyyy</li>
+    	<li th:text="${#calendars.format(execInfo.now, 'dd/MMM/yyyy HH:mm')}">Fecha con formato 'dd/MMM/yyyy HH:mm'</li>
+    	<li th:text="${#calendars.format(today, #messages.msg('home.dateFormat'))}">Fecha con formato 'dd/MMM/yyyy HH:mm'</li>
+    	<li th:text="${#locale}">Locale</li>
+    </ul>
+</body>
+</html>

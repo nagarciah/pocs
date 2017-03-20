@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<title>Single Page Application (SPA) Demo</title>
+<meta charset="UTF-8" />
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-route.min.js"></script>
+</head>
+
+<body>
+ 	<a href="#!/">Home</a>
+    <a href="#!/blog">Blog</a>
+    <a href="#!/about">About</a>
+    <a href="#!/directive-demo">Demo Directiva</a>
+    
+	<div ng-view></div>
+	
+	<script src="js/spa-demo.js"></script>
+	<script src="directives/my-person.js"></script>
+</body>
+</html>

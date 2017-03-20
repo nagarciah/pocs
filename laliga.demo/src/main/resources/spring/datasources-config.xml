@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc 		http://www.springframework.org/schema/mvc/spring-mvc.xsd 
+		http://www.springframework.org/schema/beans 	http://www.springframework.org/schema/beans/spring-beans.xsd 
+		http://www.springframework.org/schema/context 	http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/tx 		http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<!-- **************************************************************** -->
+	<!-- DATA SOURCE + TRANSACTIONS                                     -->
+	<!-- **************************************************************** -->
+	<beans profile="dev-local">
+		<bean id="dataSource"
+			class="com.mchange.v2.c3p0.ComboPooledDataSource">
+			<property name="driverClass" value="com.mysql.jdbc.Driver" />
+			<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/laliga?autoReconnect=true" />
+			<!-- <property name="driverClass" value="org.apache.derby.jdbc.ClientDriver" />
+			<property name="jdbcUrl" value="jdbc:derby://localhost:6666/my_batch_test_db;create=true" /> -->
+			<property name="user" value="laliga" />
+			<property name="password" value="laliga" />
+			<property name="acquireIncrement" value="10" />
+			<property name="idleConnectionTestPeriod" value="60" />
+			<property name="maxPoolSize" value="100" />
+			<property name="maxStatements" value="50" />
+			<property name="minPoolSize" value="10" />
+		</bean>
+	</beans>
+	
+	<beans profile="dev-openshift">
+		<context:property-placeholder />
+		<bean id="dataSource"
+			class="com.mchange.v2.c3p0.ComboPooledDataSource">
+			<property name="driverClass" value="com.mysql.jdbc.Driver" />
+			<property name="jdbcUrl" value="jdbc:mysql://${OPENSHIFT_MYSQL_DB_HOST}:${OPENSHIFT_MYSQL_DB_PORT}/laliga?autoReconnect=true" />
+			<!-- TODO Hacer configurable por Spring  -->  
+			<!-- <property name="jdbcUrl" value="jdbc:mysql://127.11.228.130:3306/laliga?autoReconnect=true" /> -->
+			<property name="user" value="laliga" />
+			<property name="password" value="laliga" />
+			<property name="acquireIncrement" value="10" />
+			<property name="idleConnectionTestPeriod" value="60" />
+			<property name="maxPoolSize" value="100" />
+			<property name="maxStatements" value="50" />
+			<property name="minPoolSize" value="10" />
+		</bean>
+	</beans>
+
+</beans>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Aldeamo Email</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/css/bootstrap-responsive.min.css" />
+<link rel="stylesheet" href="/css/matrix-style.css" />
+<link rel="stylesheet" href="/css/matrix-media.css" />
+<link href="/font-awesome/css/font-awesome.css" rel="stylesheet" />
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css' />
+</head>
+<body>
+
+<div th:include="menu :: all-controls"></div>
+
+<div id="content">
+  <div id="content-header">
+    <div id="breadcrumb"> <a href="#" title="Ir al Inicio" class="tip-bottom"><i class="icon-home"></i> Inicio</a> <a href="#">Email</a> <a href="#" class="current">Asistente para Campañas</a> </div>
+    <h1>Asistente para Campañas</h1>
+  </div>
+  <div class="container-fluid"><hr />
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="widget-box">
+          <div class="widget-title"> <span class="icon"> <i class="icon-pencil"></i> </span>
+            <h5>Datos del envío</h5>
+          </div>
+          <div class="widget-content nopadding">
+          
+          	<form id="form-wizard" class="form-horizontal" method="post" enctype="multipart/form-data" th:action="@{/campaign-wizard/send}" th:object="${news}">
+            <!-- <form id="form-wizard" class="form-horizontal" method="post" action="/campaign-wizard/send" enctype="multipart/form-data" th:action="@{/campaign-wizard/send}" th:object="${news}"> -->
+              <div id="form-wizard-1" class="step">
+                <div class="control-group">
+                  <label class="control-label">Código de la campaña</label>
+                  <div class="controls">
+                    <input id="campaignId" type="text" name="campaignId" />
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label">Asunto</label>
+                  <div class="controls">
+                    <input id="subject" type="text" name="subject" />
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label">Email del remitente</label>
+                  <div class="controls">
+                    <input id="fromEmail" type="email" name="fromEmail" />
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label">Nombre del remitente</label>
+                  <div class="controls">
+                    <input id="fromName" type="text" name="Name" />
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label">Email para respuestas</label>
+                  <div class="controls">
+                    <input id="replyToEmail" type="email" name="replyToEmail" />
+                  </div>
+                </div>
+              </div>
+              
+              <!--  PASO 2: Selección de plantilla -->
+              
+              <div id="form-wizard-2" class="step">
+                <div class="control-group">
+	              <label class="control-label">Plantillas existentes</label>
+	              <div class="controls">
+	                <select id="templateId" name="templateId" >
+	                  <option th:each="tpl : ${emailTemplates}"
+	                  		  th:value="${tpl.customerTemplateId}"
+	                  		  th:text="${tpl.friendlyName}">Plantilla 1</option>
+	                </select>
+	              </div>
+	            </div>
+              </div>
+              
+			  <!--  PASO 3: Destinatarios -->
+
+              <div id="form-wizard-3" class="step">
+                <div class="control-group">
+	              <label class="control-label">Cargar archivo Excel (*.xlsx, 2007-2013)</label>
+	              <div class="controls">
+	                <input type="file" name="emailDataFile" accept=".xlsx" />
+	              </div>
+	            </div>
+                <div class="control-group">
+                  <label class="control-label">La primera fila contiene nombres de variables</label>
+                  <div class="controls">
+                    <input id="varNamesInFirstRow" type="checkbox" name="varNamesInFirstRow" />
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label">Confirmo el envío</label>
+                  <div class="controls">
+                    <input id="sendConfirmed" type="checkbox" name="sendConfirmed" />
+                  </div>
+                </div>
+              </div>
+              
+              <!--  CONTROLES DE WIZARD -->
+              <div class="form-actions">
+                <input id="back" class="btn btn-primary" type="reset" value="Back" />
+                <input id="next" class="btn btn-primary" type="submit" value="Next" />
+                <div id="status"></div>
+              </div>
+              <div id="submitted"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div th:include="footer :: footer"></div>
+
+<script src="/js/jquery.min.js"></script> 
+<script src="/js/jquery.ui.custom.js"></script> 
+<script src="/js/bootstrap.min.js"></script> 
+<script src="/js/jquery.validate.js"></script>
+<script src="/js/jquery.wizard.js"></script> 
+<script src="/js/matrix.js"></script> 
+<script src="/js/matrix.wizard.js"></script>
+</body>
+</html>

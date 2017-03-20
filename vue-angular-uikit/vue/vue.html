@@ -1,0 +1,155 @@
+<html>
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+	<h3>Text interpolation</h3>
+	<div id="app">{{ message }}</div>
+	<button onclick="app.message=app.newMessage">Click me!</button>
+
+	<script type="text/javascript">
+		var app = new Vue({
+			el : '#app',
+			data : {
+				message : 'Hello Vue!',
+				newMessage : 'You clicked the button'
+			}
+		})
+	</script>
+
+	<h3>Attributes Binding</h3>
+	<div id="app-2">
+		<span v-bind:title="message"> Hover your mouse over me for a
+			few seconds to see my dynamically bound title! </span>
+		<button onclick="app2.message='You clicked me again!'">(or
+			click me again and hover the text)</button>
+	</div>
+	<script type="text/javascript">
+		var app2 = new Vue({
+			el : '#app-2',
+			data : {
+				message : 'You loaded this page on ' + new Date()
+			}
+		})
+	</script>
+
+
+	<h3>Conditional</h3>
+	<div id="app-3">
+		<p v-if="seen">Now you see me</p>
+	</div>
+	<button onclick="app3.seen=!app3.seen">Toggle me</button>
+	<script type="text/javascript">
+		var app3 = new Vue({
+			el : '#app-3',
+			data : {
+				seen : true
+			}
+		})
+	</script>
+
+	<h3>Loops</h3>
+	<div id="app-4">
+		<ol>
+			<li v-for="todo in todos">{{ todo.text }}</li>
+		</ol>
+		<button onclick="app4.todos.push({text: new Date()})">Add item</button>
+	</div>
+	<script type="text/javascript">
+	var app4 = new Vue({
+		  el: '#app-4',
+		  data: {
+		    todos: [
+		      { text: 'Learn JavaScript' },
+		      { text: 'Learn Vue' },
+		      { text: 'Build something awesome' }
+		    ]
+		  }
+		})
+	</script>
+	
+	<h3>Events</h3>
+	<div id="app-5">
+		<p>{{ message }}</p>
+		<button v-on:click="reverseMessage">Reverse Message</button>
+	</div>
+	<script type="text/javascript">
+	var app5 = new Vue({
+		  el: '#app-5',
+		  data: {
+		    message: 'Hello Vue.js!'
+		  },
+		  methods: {
+		    reverseMessage: function () {
+		      this.message = this.message.split('').reverse().join('')
+		    }
+		  }
+		})
+	</script>
+	
+	<h3>Two way binding</h3>
+	<div id="app-6">
+		<p>{{ message }}</p>
+		<input v-model="message">
+	</div>
+	<script type="text/javascript">
+		var app6 = new Vue({
+			el : '#app-6',
+			data : {
+				message : 'Hello Vue!'
+			}
+		})
+	</script>
+	
+	
+	<h3>Components</h3>
+	<div id="app-7">
+		<ol>
+			<!-- Now we provide each todo-item with the todo object    -->
+			<!-- it's representing, so that its content can be dynamic -->
+			<todo-item v-for="item in groceryList" v-bind:todo="item"></todo-item>
+		</ol>
+	</div>
+	<script type="text/javascript">
+		Vue.component('todo-item', {
+			props : [ 'todo' ],
+			template : '<li>{{ todo.text }}</li>'
+		})
+		var app7 = new Vue({
+			el : '#app-7',
+			data : {
+				groceryList : [ 
+					{ text : 'Vegetables' }, 
+					{ text : 'Cheese' }, 
+					{ text : 'Whatever else humans are supposed to eat'}
+				]
+			}
+		})
+	</script>
+	
+	
+	<h3>Filters</h3>
+	<div id="app-8">
+		<p>{{message|capitalize|capitalize(5)}}</p>
+	</div>
+	<script type="text/javascript">
+		new Vue({
+			el : '#app-8',
+			data : {
+				message : 'first letter was lowercase'
+			},
+			filters : {
+				capitalize : function(value) {
+					if (!value)
+						return ''
+					
+					value = value.toString()
+					return value.charAt(0).toUpperCase() + value.slice(1)
+				}
+			}
+		})
+	</script>
+</body>
+</html>

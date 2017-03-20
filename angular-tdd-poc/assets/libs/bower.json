@@ -1,0 +1,17 @@
+{
+  "name": "angular-tdd-poc",
+  "authors": [
+    "nelson <nagarciah@yahoo.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

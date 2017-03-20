@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc 		http://www.springframework.org/schema/mvc/spring-mvc.xsd 
+		http://www.springframework.org/schema/beans 	http://www.springframework.org/schema/beans/spring-beans.xsd 
+		http://www.springframework.org/schema/context 	http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/tx 		http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<context:component-scan base-package="nagarciah.laliga.demo" />
+
+	<!-- Spring MVC / REST Services -->
+	<mvc:annotation-driven />
+
+	<!-- **************************************************************** -->
+	<!-- THYMELEAF                                                        -->
+	<!-- **************************************************************** -->
+	<!-- MESSAGE EXTERNALIZATION/INTERNATIONALIZATION -->
+	<!-- Standard Spring MessageSource implementation -->
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="Messages" />
+	</bean>
+
+  	<!--  THYMELEAF-SPECIFIC ARTIFACTS                                    -->
+  	<!--  TemplateResolver <- TemplateEngine <- ViewResolver              -->
+	<bean id="templateResolver"
+		class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
+		<property name="prefix" value="/WEB-INF/view/" />
+		<property name="suffix" value=".html" />
+		<property name="templateMode" value="HTML5" />
+	</bean>
+
+	<bean id="templateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">
+		<property name="templateResolver" ref="templateResolver" />
+	</bean>
+
+	<bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
+		<property name="templateEngine" ref="templateEngine" />
+	</bean>
+
+
+	<!-- **************************************************************** -->
+	<!-- DATA SOURCE + TRANSACTIONS                                     -->
+	<!-- **************************************************************** -->
+	<import resource="datasources-config.xml" />
+
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	
+	<!-- **************************************************************** -->
+	<!-- MyBatis                                                   		  -->
+	<!-- **************************************************************** -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:mybatis-config.xml"/>
+		<property name="typeAliasesPackage" value="nagarciah.laliga.demo.model"/>
+	  	<property name="mapperLocations" value="classpath*:nagarciah/laliga/demo/dao/**/*.xml" />
+	</bean>
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+	  	<property name="basePackage" value="nagarciah.laliga.demo.dao" />
+	</bean>
+	
+	<!-- **************************************************************** -->
+	<!-- DAOS                                                      		  -->
+	<!-- **************************************************************** -->
+	<!-- <bean id="userService" class="nagarciah.laliga.demo.service.UserService">
+		</bean> -->
+	<!-- <bean id="userDAO" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>	
+   		<property name="mapperInterface" value="org.podcastpedia.dao.PodcastDao" />
+	</bean> -->
+	
+
+</beans>

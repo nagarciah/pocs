@@ -1,0 +1,19 @@
+<div class="uk-panel uk-scrollable-box uk-height-viewport">
+	<!-- <ul class="uk-pagination" data-uk-pagination="{items: {{itemList.length}}, itemsOnPage:20, displayedPages: 6}"></ul> -->
+	<ul class="uk-list uk-list-striped">
+		<li ng-repeat="item in itemList | lf:textFilter():filterBy() | orderBy: sortBy">
+			<div class="uk-clearfix" ng-click="onItemClicked({item: item})">
+				<img class="uk-thumbnail uk-border-circle uk-align-left" width="60px" ng-show="item.image != null" ng-src="{{'/assets/img/' + item.image}}"/>
+				<img class="uk-thumbnail uk-border-circle uk-align-left" width="60px" ng-show="item.image == null" ng-src="/assets/img/contact.jpg"/>
+				<div class="uk-align-left">
+					<span class="uk-h4">{{ item.name }}</span><br /> 
+					<strong><i class="uk-icon-phone" /> {{ item.phone }}</strong><br /> 
+					<small><i class="uk-icon-user" /> {{item.role}}</small><br /> 
+					<small><i class="uk-icon-envelope" /> {{ item.email }}</small><br />
+					<small><i class="uk-icon-skype" /> {{ item.skype }}</small> <br />
+					<!-- <small><i class="uk-icon-map-marker" /> {{ item.address }}</small> -->
+				</div>
+			</div>
+		</li>
+	</ul>
+</div>

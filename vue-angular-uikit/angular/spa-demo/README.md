@@ -1,0 +1,1 @@
+El proyecto sigue la estructura recomendada en https://scotch.io/tutorials/angularjs-best-practices-directory-structure. Una estructura muy similar siguen los proyectos de Ionic

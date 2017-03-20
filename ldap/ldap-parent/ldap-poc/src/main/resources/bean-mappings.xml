@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://dozer.sourceforge.net
+          http://dozer.sourceforge.net/schema/beanmapping.xsd">
+
+  <configuration>
+    <stop-on-errors>true</stop-on-errors>
+    <date-format>MM/dd/yyyy HH:mm</date-format>
+    <wildcard>true</wildcard>
+  </configuration>
+
+  <mapping>
+    <class-a>com.nagarciah.pocs.ldap.entry.InetOrgPerson</class-a>
+    <class-b>com.nagarciah.pocs.ldap.dto.Contact</class-b>
+      <field custom-converter="com.nagarciah.pocs.ldap.conf.DozerBeanMapperConfig.LdapNameConverter">
+        <a>dn</a>
+        <b>id</b>
+      </field>
+      <field>
+        <a>cn</a>
+        <b>id</b>
+      </field>
+      <field>
+        <a>sn</a>
+        <b>name</b> <!-- lastname -->
+      </field>
+      <field>
+        <a>uid</a>
+        <b>id</b>
+      </field>
+      <field>
+        <a>displayName</a>
+        <b>name</b>
+      </field>
+       <field>
+        <a>title</a>
+        <b>role</b>
+      </field>
+      <field>
+        <a>telephoneNumber</a>
+        <b>phone</b>
+      </field>
+      <field>
+        <a>postalAddress</a>
+        <b>address</b>
+      </field>
+<!--
+      <field>
+        <a>person</a>
+        <b>phoneExt</b>
+      </field>
+      <field>
+        <a>person</a>
+        <b>image</b>
+      </field>
+      -->
+      <field>
+        <a>mail</a>
+        <b>email</b>
+      </field>
+      <!-- <field>
+        <a>person</a>
+        <b>countryCode</b>
+      </field>
+      <field>
+        <a>person</a>
+        <b>headquarter</b>
+      </field>
+      <field>
+        <a>person</a>
+        <b>status</b>
+      </field>
+      <field>
+        <a>person</a>
+        <b>vip</b>
+      </field>
+      <field>
+        <a>person</a>
+        <b>skype</b>
+      </field> -->
+      <field>
+        <a>userPassword</a>
+        <b>password</b>
+      </field>
+  </mapping> 
+        
+</mappings>  

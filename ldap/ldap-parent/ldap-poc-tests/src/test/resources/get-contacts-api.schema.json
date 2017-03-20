@@ -1,0 +1,34 @@
+{
+	"title": "Get Contacts API Schema",
+	"type": "array",
+	"uniqueItems": true,
+	"items": {
+		"title": "Contact Entry",
+		"type": "object",
+		"properties": {
+			"id": {"type": "string"},
+			"name": {"type": "string"},
+			"role": {"type": "string"},
+			"phone": {"type": "string"},
+			"address": {"type": ["string","null"]},
+			"phoneExt": {"type": "string"},
+			"image": {"type": "string"},
+			"email": {"type": "string"},
+			"countryCode": {"type": "string"},
+			"headquarter": {"type": "string"},
+			"status": {"type": "string"},
+			"vip": {"type": "boolean"},
+			"skype": {"type": "string"},
+
+			"age": {
+				"description": "Age in years",
+				"type": "integer",
+				"minimum": 0
+			}
+		},
+		"required": [
+			"id",
+			"name"
+		]
+	}
+}

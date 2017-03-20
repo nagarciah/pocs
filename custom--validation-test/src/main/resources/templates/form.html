@@ -1,0 +1,38 @@
+<!-- 
+Para ver como se manejan los errores en formularios en Thymeleaf, pueden ver aquí:
+http://www.thymeleaf.org/doc/tutorials/2.1/thymeleafspring.html#validation-and-error-messages
+ -->
+ 
+<html>
+	<head>
+		<style type="text/css">
+			.fieldError {
+				border-color: red;
+			}
+		</style>
+	</head>
+    <body>
+        <form action="#" th:action="@{/}" th:object="${personForm}" method="post">
+            <table>
+                <tr>
+                    <td>Name:</td>
+                    <td><input type="text" th:field="*{name}" th:errorclass="fieldError"/></td>
+                    <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
+                </tr>
+                <tr>
+                    <td>Age:</td>
+                    <td><input type="text" th:field="*{age}" th:errorclass="fieldError" /></td>
+                    <td th:if="${#fields.hasErrors('age')}" th:errors="*{age}"><p>Age Error</p></td>
+                </tr>
+                <tr>
+                    <td>Message:</td>
+                    <td><input type="text" th:field="*{myMessage}" th:errorclass="fieldError"/></td>
+                    <td th:if="${#fields.hasErrors('myMessage')}" th:errors="*{myMessage}">Message Error</td>
+                </tr>
+                <tr>
+                    <td><button type="submit">Submit</button></td>
+                </tr>
+            </table>
+        </form>
+    </body>
+</html>

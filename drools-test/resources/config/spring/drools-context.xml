@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:drools="http://drools.org/schema/drools-spring"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://drools.org/schema/drools-spring http://drools.org/schema/drools-spring.xsd">
+
+	<drools:kbase id="productsKBase">
+		<drools:resources>
+			<drools:resource type="DTABLE"
+				source="classpath:rules/spring/product_table.xls" />
+		</drools:resources>
+	</drools:kbase>
+
+	<drools:ksession id="productsKSession" name="productsKSession"
+		type="stateless" kbase="productsKBase" />
+
+	<drools:kbase id="usersKBase">
+		<drools:resources>
+			<drools:resource type="DTABLE"
+				source="classpath:rules/spring/user_table.xls" />
+		</drools:resources>
+	</drools:kbase>
+
+	<drools:ksession id="usersKSession" name="usersKSession"
+		type="stateless" kbase="usersKBase" />
+
+	<!-- Take a look at the aliases for productsKSession. 
+		By providing alias we are joining two potential knowledge sessions into a 
+		single one. A single knowledge session is defined for a single knowledge 
+		base. For the knowledge base we are providing the list (in our case just 
+		a single resource) of drl files (we could have provided an excel spreadsheet). -->
+	<!-- Se puede usar el alias jutno con un patrón factory para rpocesar diferentes conjuntos de reglas según el tipo de producto:
+		como en: http://java.dzone.com/articles/drools-integration-spring-vs  -->
+	<alias name="productsKSession" alias="electronicKSession" />
+	<alias name="productsKSession" alias="medicalKSession" />
+</beans>
