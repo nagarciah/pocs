@@ -1,52 +1,91 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <title>PhoneBook</title>
 <link rel="stylesheet"
 	href="bower_components/angular-material/angular-material.min.css">
-<!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-	rel="stylesheet"> -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
 </head>
-<body ng-app="MyApp" layout="column" style="font-family: 'Roboto',sans-serif;">
+<body ng-app="MyApp" ng-cloak layout="column" style="font-family: 'Roboto',sans-serif;" ng-controller="homeController">
 
 	<md-toolbar>
-	<h1>Angular Material Starter</h1>
+    <div class="md-toolbar-tools">
+      <md-button class="md-icon-button" aria-label="contacts" ng-click="toggleSideNav()">
+        <md-icon class="material-icons">menu</md-icon>
+      </md-button>
+      <h2><span>PhoneBook</span></h2>
+      <span flex></span>
+      <md-button class="md-icon-button" aria-label="More">
+         <md-icon class="material-icons">more_vert</md-icon>
+      </md-button>
+    </div>
 	</md-toolbar>
 
-	<div class="container" layout="row" flex>
-		<md-sidenav md-is-locked-open="true" class="md-whiteframe-4dp">
+	<div class="container" layout="row"  layout-xs="column" flex>
+		<md-sidenav md-component-id="contactsSideNav" md-is-locked-open="$mdMedia('gt-sm')" class="md-whiteframe-4dp">
 			<md-list>
-				<md-list-item>
-					<md-button layout-fill>
-						<md-icon md-svg-src="../shared-assets/img/avengers-logo.svg"></md-icon>
-							Natasha Romanov
-					</md-button>
-					<!--<span>Natasha Romanov</span>-->
-				</md-list-item>
-        <md-list-item>
-					<md-button layout-fill>
-						<md-icon md-svg-src="../shared-assets/img/avengers-logo.svg"></md-icon>
-							Natasha Romanov
-					</md-button>
-					<!--<span>Natasha Romanov</span>-->
-				</md-list-item>
+        <md-subheader class="md-no-sticky">
+          <md-input-container class="md-block">
+            <label>Buscar</label>
+            <input required name="userName" ng-model="null">
+            <div ng-messages="userName.$error">
+               <div ng-message="required">This is required.</div>
+            </div>
+           </md-input-container>
+        </md-subheader>
+        <md-list-item class="md-2-line" ng-repeat="item in items" ng-click="setSelected(item)">
+          <img class="md-avatar" ng-src="{{'/shared-assets/img/' + item.image}}"/>
+          <div class="md-list-item-text" layout="column">
+            <h3>{{ item.name }}</h3>
+            <h4><!--<i class="material-icons">account_circle</i>--> {{ item.role }}</h4>
+            <!--<p><i class="material-icons">phone</i> {{ item.phone }}</p>
+            <p><i class="material-icons">email</i> {{ item.email }}</p>
+            <p><i class="material-icons">chat</i> {{ item.skype }}</p>-->
+            <md-divider />
+          </div>
+        </md-list-item>
 			</md-list>
 		</md-sidenav>
-		<md-content id="content" flex>
-			<md-icon md-svg-src="../shared-assets/img/avengers-logo.svg"></md-icon>
-			<h2>Natasha Romanov</h2>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras
-				bibendum porttitor velit, nec aliquam dui condimentum quis. Sed id
-				arcu pretium risus rhoncus aliquet. Pellentesque diam justo,
-				tristique viverra pellentesque ut, posuere quis arcu. Maecenas et
-				varius velit. Phasellus pellentesque sem quam, ut rhoncus arcu
-				commodo in. Vestibulum volutpat efficitur ex quis blandit. Mauris eu
-				dui laoreet, ornare nulla ac, placerat mauris. Proin mattis elementum
-				nulla, et sodales orci. Curabitur non diam ut risus sodales pharetra
-				non quis neque. Donec interdum fermentum nulla, vel ultricies ex
-				mollis cursus.</p>
-			<md-button>
 
-			</md-button>
+		<md-content id="content" layout="row" layout-xs="column" flex>
+      <!--<md-grid-list md-cols-sm="1" md-cols-gt-sm="2" md-row-height="4:3">
+        <md-grid-tile>-->
+          <md-card flex>
+            <md-card-header>
+              <md-card-header-text class="md-title">{{selected.name}}</md-card-header-text>
+              <md-card-header-text class="md-subhead">[{{selected.role}}]</md-card-header-text>
+            </md-card-header>
+            <img ng-src="{{'/shared-assets/img/' + selected.image}}" style="width:100%"></img>
+          </md-card>
+        <!--</md-grid-tile>
+        <md-grid-tile>-->
+          <md-card flex>
+            <md-card-actions layout="row" layout-align="end center">
+              <md-card-icon-actions>
+                <md-button class="md-icon-button" aria-label="icon">
+                  <md-icon class="material-icons">add</md-icon>
+                </md-button>
+                <md-button class="md-icon-button" aria-label="icon">
+                  <md-icon class="material-icons">delete</md-icon>
+                </md-button>
+                <md-button class="md-icon-button" aria-label="icon">
+                  <md-icon class="material-icons">edit_mode</md-icon>
+                </md-button>
+              </md-card-icon-actions>
+            </md-card-actions>
+            <md-card-content>
+              <md-list>
+                <md-list-item><i class="material-icons">phone</i> {{selected.phone}}</md-list-item>
+                <md-list-item><i class="material-icons">account_circle</i> {{selected.role}}</md-list-item>
+                <md-list-item><i class="material-icons">email</i> {{selected.email}}</md-list-item>
+                <md-list-item><i class="material-icons">chat</i> {{selected.skype}}</md-list-item>
+                <md-list-item><md-icon md-font-icon="chat"></md-icon> {{selected.skype}}</md-list-item>
+              </ul>
+            </md-card-content>
+          </md-card>
+        <!--</md-grid-tile>
+      </md-grid-list>-->
 		</md-content>
 	</div>
 
@@ -62,7 +101,44 @@
 	<script type="text/javascript">
 		angular.module('MyApp', [ 'ngMaterial' ]).run(function() {
 			console.log('MyApp is ready');
-		});
+		})
+    .controller('homeController', ['$scope', '$mdSidenav', function($scope, $mdSidenav){
+      $scope.items = [
+        {
+          name: 'Natasha Romanov',
+          phone: '12345',
+          role: 'Black Widow',
+          email: 'n.romanov@shield.com',
+          skype: 'n.romanov',
+          image: '01.jpg'
+        },{
+          name: 'Tony Stark',
+          phone: '45678',
+          role: 'Ironman',
+          email: 't.stark@shield.com',
+          skype: 't.stark',
+          image: '03.jpg'
+        },{
+          name: 'Thor Odinsson',
+          phone: '98741',
+          role: 'Thor',
+          email: 'thor@shield.com',
+          skype: 'thor',
+          image: '04.jpg'
+        }
+      ];
+
+      $scope.selected = $scope.items[0];
+
+      $scope.setSelected = function(item){
+        $scope.selected = item;
+        $scope.toggleSideNav();
+      }
+
+      $scope.toggleSideNav = function(){
+        $mdSidenav('contactsSideNav').toggle();
+      }
+    }]);
 	</script>
 </body>
 </html>
