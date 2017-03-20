@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet"
+	href="bower_components/angular-material/angular-material.min.css">
+<!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet"> -->
+</head>
+<body ng-app="MyApp" layout="column" style="font-family: 'Roboto',sans-serif;">
+
+	<md-toolbar>
+	<h1>Angular Material Starter</h1>
+	</md-toolbar>
+
+	<div class="container" layout="row" flex>
+		<md-sidenav md-is-locked-open="true" class="md-whiteframe-4dp">
+			<md-list>
+				<md-list-item>
+					<md-button layout-fill>
+						<md-icon md-svg-src="../shared-assets/img/avengers-logo.svg"></md-icon>
+							Natasha Romanov
+					</md-button>
+					<!--<span>Natasha Romanov</span>-->
+				</md-list-item>
+        <md-list-item>
+					<md-button layout-fill>
+						<md-icon md-svg-src="../shared-assets/img/avengers-logo.svg"></md-icon>
+							Natasha Romanov
+					</md-button>
+					<!--<span>Natasha Romanov</span>-->
+				</md-list-item>
+			</md-list>
+		</md-sidenav>
+		<md-content id="content" flex>
+			<md-icon md-svg-src="../shared-assets/img/avengers-logo.svg"></md-icon>
+			<h2>Natasha Romanov</h2>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras
+				bibendum porttitor velit, nec aliquam dui condimentum quis. Sed id
+				arcu pretium risus rhoncus aliquet. Pellentesque diam justo,
+				tristique viverra pellentesque ut, posuere quis arcu. Maecenas et
+				varius velit. Phasellus pellentesque sem quam, ut rhoncus arcu
+				commodo in. Vestibulum volutpat efficitur ex quis blandit. Mauris eu
+				dui laoreet, ornare nulla ac, placerat mauris. Proin mattis elementum
+				nulla, et sodales orci. Curabitur non diam ut risus sodales pharetra
+				non quis neque. Donec interdum fermentum nulla, vel ultricies ex
+				mollis cursus.</p>
+			<md-button>
+
+			</md-button>
+		</md-content>
+	</div>
+
+	<script type="text/javascript"
+		src="bower_components/angular/angular.min.js"></script>
+	<script type="text/javascript"
+		src="bower_components/angular-animate/angular-animate.min.js"></script>
+	<script type="text/javascript"
+		src="bower_components/angular-aria/angular-aria.min.js"></script>
+	<script type="text/javascript"
+		src="bower_components/angular-material/angular-material.min.js"></script>
+
+	<script type="text/javascript">
+		angular.module('MyApp', [ 'ngMaterial' ]).run(function() {
+			console.log('MyApp is ready');
+		});
+	</script>
+</body>
+</html>
