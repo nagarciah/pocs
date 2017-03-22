@@ -6,6 +6,15 @@
 	href="bower_components/angular-material/angular-material.min.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
+<link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+
+  <style>
+  .gray {
+    background: #f5f5f5; }
+
+  .green {
+    background: #b9f6ca; }
+  </style>
 </head>
 <body ng-app="MyApp" ng-cloak layout="column" style="font-family: 'Roboto',sans-serif;" ng-controller="homeController">
 
@@ -25,16 +34,16 @@
 	<div class="container" layout="row"  layout-xs="column" flex>
 		<md-sidenav md-component-id="contactsSideNav" md-is-locked-open="$mdMedia('gt-sm')" class="md-whiteframe-4dp">
 			<md-list>
-        <md-subheader class="md-no-sticky">
+        <md-subheader class__="md-no-sticky">
           <md-input-container class="md-block">
             <label>Buscar</label>
-            <input required name="userName" ng-model="null">
+            <input required name="userName" ng-model="query">
             <div ng-messages="userName.$error">
                <div ng-message="required">This is required.</div>
             </div>
            </md-input-container>
         </md-subheader>
-        <md-list-item class="md-2-line" ng-repeat="item in items" ng-click="setSelected(item)">
+        <md-list-item class="md-2-line" ng-repeat="item in items | lf:query:['name','role','email']" ng-click="setSelected(item)">
           <img class="md-avatar" ng-src="{{'/shared-assets/img/' + item.image}}"/>
           <div class="md-list-item-text" layout="column">
             <h3>{{ item.name }}</h3>
@@ -48,18 +57,21 @@
 			</md-list>
 		</md-sidenav>
 
-		<md-content id="content" layout="row" layout-xs="column" flex>
-      <!--<md-grid-list md-cols-sm="1" md-cols-gt-sm="2" md-row-height="4:3">
-        <md-grid-tile>-->
+		<!--<md-content id="content" layout="row" layout-xs="column" flex>-->
+    <md-content id="content" flex>
+      <md-grid-list md-cols-xs="1" md-cols-gt-xs="2" md-row-height="1:1" layout-align="start start">
+        <md-grid-tile>
           <md-card flex>
             <md-card-header>
               <md-card-header-text class="md-title">{{selected.name}}</md-card-header-text>
               <md-card-header-text class="md-subhead">[{{selected.role}}]</md-card-header-text>
             </md-card-header>
-            <img ng-src="{{'/shared-assets/img/' + selected.image}}" style="width:100%"></img>
+            <md-card-content layout="column" layout-align="center center">
+              <img ng-src="{{'/shared-assets/img/' + selected.image}}" style="width:90%"></img>
+            </md-card-content>
           </md-card>
-        <!--</md-grid-tile>
-        <md-grid-tile>-->
+        </md-grid-tile>
+        <md-grid-tile>
           <md-card flex>
             <md-card-actions layout="row" layout-align="end center">
               <md-card-icon-actions>
@@ -79,13 +91,14 @@
                 <md-list-item><i class="material-icons">phone</i> {{selected.phone}}</md-list-item>
                 <md-list-item><i class="material-icons">account_circle</i> {{selected.role}}</md-list-item>
                 <md-list-item><i class="material-icons">email</i> {{selected.email}}</md-list-item>
-                <md-list-item><i class="material-icons">chat</i> {{selected.skype}}</md-list-item>
-                <md-list-item><md-icon md-font-icon="chat"></md-icon> {{selected.skype}}</md-list-item>
+                <md-list-item><i class="fa fa-skype fa-lg" aria-hidden="true"></i>&nbsp;{{selected.skype}}</md-list-item>
+                <!--<md-icon md-font-icon="fa fa-skype"></md-icon>-->
+                <!--<md-list-item><md-icon md-font-icon="material-icons">chat</md-icon>{{selected.skype}}</md-list-item>-->
               </ul>
             </md-card-content>
           </md-card>
-        <!--</md-grid-tile>
-      </md-grid-list>-->
+        </md-grid-tile>
+      </md-grid-list>
 		</md-content>
 	</div>
 
@@ -128,6 +141,8 @@
         }
       ];
 
+      $scope.query = null;
+
       $scope.selected = $scope.items[0];
 
       $scope.setSelected = function(item){
@@ -138,7 +153,38 @@
       $scope.toggleSideNav = function(){
         $mdSidenav('contactsSideNav').toggle();
       }
-    }]);
+    }])
+
+    .filter('lf', function() {
+    	return function(list, txt, filterBy) {
+    		var filtered = [];
+
+    		if (list && txt) {
+    			var filters = filterBy;
+
+    			for (var i = 0; i < list.length; i++) {
+    				var matchString = txt.toLowerCase();
+    				var item = list[i];
+    				for ( var key in item) {
+    					if (filters.indexOf(key) != -1
+    							&& item[key]
+    							&& (typeof item[key] === 'string')
+    							&& item[key].toLowerCase().indexOf(matchString) != -1)
+    					{
+    						if(filtered.indexOf(item)==-1){ // Evita duplicados por haber ya encontrado coincidencia en otro campo
+    							filtered.push(item);
+    						}
+    					}
+    				}
+    			}
+    		} else {
+    			return list;
+    		}
+
+    		return filtered;
+    	}
+
+    });
 	</script>
 </body>
 </html>
