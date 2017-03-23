@@ -31,29 +31,29 @@
     </div>
 	</md-toolbar>
 
-	<div class="container" layout="row"  layout-xs="column" flex>
+	<div class="container" layout="row"  layout-xs="column" flex ng-show="itemList.length > 0">
 		<md-sidenav md-component-id="contactsSideNav" md-is-locked-open="$mdMedia('gt-sm')" class="md-whiteframe-4dp">
 			<md-list>
-        <md-subheader class__="md-no-sticky">
-          <md-input-container class="md-block">
-            <label>Buscar</label>
-            <input required name="userName" ng-model="query">
-            <div ng-messages="userName.$error">
-               <div ng-message="required">This is required.</div>
-            </div>
-           </md-input-container>
-        </md-subheader>
-        <md-list-item class="md-2-line" ng-repeat="item in items | lf:query:['name','role','email']" ng-click="setSelected(item)">
-          <img class="md-avatar" ng-src="{{'/shared-assets/img/' + item.image}}"/>
-          <div class="md-list-item-text" layout="column">
-            <h3>{{ item.name }}</h3>
-            <h4><!--<i class="material-icons">account_circle</i>--> {{ item.role }}</h4>
-            <!--<p><i class="material-icons">phone</i> {{ item.phone }}</p>
-            <p><i class="material-icons">email</i> {{ item.email }}</p>
-            <p><i class="material-icons">chat</i> {{ item.skype }}</p>-->
-            <md-divider />
-          </div>
-        </md-list-item>
+		        <md-subheader class__="md-no-sticky">
+		          <md-input-container class="md-block">
+		            <label>Buscar</label>
+		            <input required name="userName" ng-model="query">
+		            <div ng-messages="userName.$error">
+		               <div ng-message="required">This is required.</div>
+		            </div>
+		           </md-input-container>
+		        </md-subheader>
+		        <md-list-item class="md-2-line" ng-repeat="item in itemList | lf:query:['name','role','email']" ng-click="setSelected(item)">
+		          <img class="md-avatar" ng-src="{{'/shared-assets/img/' + item.image}}"/>
+		          <div class="md-list-item-text" layout="column">
+		            <h3>{{ item.name }}</h3>
+		            <h4><!--<i class="material-icons">account_circle</i>--> {{ item.role }}</h4>
+		            <!--<p><i class="material-icons">phone</i> {{ item.phone }}</p>
+		            <p><i class="material-icons">email</i> {{ item.email }}</p>
+		            <p><i class="material-icons">chat</i> {{ item.skype }}</p>-->
+		            <md-divider />
+		          </div>
+		        </md-list-item>
 			</md-list>
 		</md-sidenav>
 
@@ -63,11 +63,11 @@
         <md-grid-tile>
           <md-card flex>
             <md-card-header>
-              <md-card-header-text class="md-title">{{selected.name}}</md-card-header-text>
-              <md-card-header-text class="md-subhead">[{{selected.role}}]</md-card-header-text>
+              <md-card-header-text class="md-title">{{selectedContact.name}}</md-card-header-text>
+              <md-card-header-text class="md-subhead">[{{selectedContact.role}}]</md-card-header-text>
             </md-card-header>
             <md-card-content layout="column" layout-align="center center">
-              <img ng-src="{{'/shared-assets/img/' + selected.image}}" style="width:90%"></img>
+              <img ng-src="{{'/shared-assets/img/' + selectedContact.image}}" style="width:90%"></img>
             </md-card-content>
           </md-card>
         </md-grid-tile>
@@ -81,20 +81,27 @@
                 <md-button class="md-icon-button" aria-label="icon">
                   <md-icon class="material-icons">delete</md-icon>
                 </md-button>
-                <md-button class="md-icon-button" aria-label="icon">
+                <md-button class="md-icon-button" aria-label="icon" ng-show="!editMode && itemList.length > 0" ng-click="editMode=true">
                   <md-icon class="material-icons">edit_mode</md-icon>
                 </md-button>
               </md-card-icon-actions>
             </md-card-actions>
             <md-card-content>
               <md-list>
-                <md-list-item><i class="material-icons">phone</i> {{selected.phone}}</md-list-item>
-                <md-list-item><i class="material-icons">account_circle</i> {{selected.role}}</md-list-item>
-                <md-list-item><i class="material-icons">email</i> {{selected.email}}</md-list-item>
-                <md-list-item><i class="fa fa-skype fa-lg" aria-hidden="true"></i>&nbsp;{{selected.skype}}</md-list-item>
+                <md-list-item><i class="material-icons">account_circle</i> {{selectedContact.role}}</md-list-item>
+                <md-list-item><i class="material-icons">location_on</i> {{selectedContact.address}}</md-list-item>
+                <md-list-item><i class="material-icons">phone</i> {{selectedContact.phoneExt}}</md-list-item>
+                <md-list-item><i class="material-icons">phone</i> {{selectedContact.phone}}</md-list-item>
+                <md-list-item><i class="material-icons">flag</i> {{selectedContact.countryCode}}</md-list-item>
+                <md-list-item><i class="material-icons">location_city</i> {{selectedContact.headquarter}}</md-list-item>
+                <md-list-item><i class="material-icons">email</i> {{selectedContact.email}}</md-list-item>
+                <md-list-item><i class="material-icons">check_circle</i> {{selectedContact.status}}</md-list-item>
+                <md-list-item><i class="material-icons">star_rate</i> {{selectedContact.vip}}</md-list-item>
+                <md-list-item><i class="fa fa-skype fa-lg" aria-hidden="true"></i>&nbsp;{{selectedContact.skype}}</md-list-item>
+                <md-list-item><i class="material-icons">security</i> {{selectedContact.password}}</md-list-item>
                 <!--<md-icon md-font-icon="fa fa-skype"></md-icon>-->
-                <!--<md-list-item><md-icon md-font-icon="material-icons">chat</md-icon>{{selected.skype}}</md-list-item>-->
-              </ul>
+                <!--<md-list-item><md-icon md-font-icon="material-icons">chat</md-icon>{{selectedContact.skype}}</md-list-item>-->
+              </md-list>
             </md-card-content>
           </md-card>
         </md-grid-tile>
@@ -116,7 +123,7 @@
 			console.log('MyApp is ready');
 		})
     .controller('homeController', ['$scope', '$mdSidenav', function($scope, $mdSidenav){
-      $scope.items = [
+      $scope.itemList = [
         {
           name: 'Natasha Romanov',
           phone: '12345',
@@ -141,12 +148,12 @@
         }
       ];
 
+      $scope.editMode = false;
       $scope.query = null;
-
-      $scope.selected = $scope.items[0];
+      $scope.selectedContact = $scope.itemList[0];
 
       $scope.setSelected = function(item){
-        $scope.selected = item;
+        $scope.selectedContact = item;
         $scope.toggleSideNav();
       }
 
