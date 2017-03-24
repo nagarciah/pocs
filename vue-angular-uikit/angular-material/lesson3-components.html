@@ -31,7 +31,7 @@
     </div>
 	</md-toolbar>
 
-	<div class="container" layout="row"  layout-xs="column" flex ng-show="itemList.length > 0">
+	<div class="container" layout="row"  layout-xs="column" layout-sm="column" flex ng-show="itemList.length > 0">
 		<md-sidenav md-component-id="contactsSideNav" md-is-locked-open="$mdMedia('gt-sm')" class="md-whiteframe-4dp">
 			<md-list>
 		        <md-subheader class__="md-no-sticky">
@@ -58,133 +58,127 @@
 		</md-sidenav>
 
 	    <md-content id="content" flex>
-        <div>
-	      <md-grid-list md-cols-xs="1" md-cols-gt-xs="2" md-row-height="1:1" layout-align-gt-xs="space-around center" layout-align-xs="space-around center">
-	        <md-grid-tile>
-	          <md-card flex>
-	            <md-card-header>
-	              <md-card-header-text class="md-title">{{selectedContact.name}}</md-card-header-text>
-	              <md-card-header-text class="md-subhead">[{{selectedContact.role}}]</md-card-header-text>
-	            </md-card-header>
-	            <md-card-content layout="column" layout-align="center center">
-	              <img ng-src="{{'/shared-assets/img/' + selectedContact.image}}" style="width:90%"></img>
-	            </md-card-content>
-	          </md-card>
-	        </md-grid-tile>
+        <div layout="column" layout="space-around stretch" layout-gt-xs="row" layout-align-gt-xs="space-around start">
+          <md-card flex>
+            <md-card-header>
+              <md-card-header-text class="md-title">{{selectedContact.name}}</md-card-header-text>
+              <md-card-header-text class="md-subhead">[{{selectedContact.role}}]</md-card-header-text>
+            </md-card-header>
+            <md-card-content layout="column" layout-align="center center">
+              <img ng-src="{{'/shared-assets/img/' + selectedContact.image}}" style="width:90%"></img>
+            </md-card-content>
+          </md-card>
 
-	        <md-grid-tile>
-	          <md-card ng-show="!editMode" flex>
-	            <md-card-actions layout="row" layout-align="end center">
-	              <md-card-icon-actions>
-	                <md-button class="md-icon-button" aria-label="icon">
-	                  <md-icon class="material-icons">add</md-icon>
-	                </md-button>
-	                <md-button class="md-icon-button" aria-label="icon">
-	                  <md-icon class="material-icons">delete</md-icon>
-	                </md-button>
-	                <md-button class="md-icon-button" aria-label="icon" ng-show="!editMode && itemList.length > 0" ng-click="editMode=true">
-	                  <md-icon class="material-icons">edit_mode</md-icon>
-	                </md-button>
-	              </md-card-icon-actions>
-	            </md-card-actions>
-	            <md-card-content>
-	              <md-list>
-	                <md-list-item><i class="material-icons">account_circle</i> {{selectedContact.role}}</md-list-item>
-	                <md-list-item><i class="material-icons">location_on</i> {{selectedContact.address}}</md-list-item>
-	                <md-list-item><i class="material-icons">phone</i> {{selectedContact.phoneExt}}</md-list-item>
-	                <md-list-item><i class="material-icons">phone</i> {{selectedContact.phone}}</md-list-item>
-	                <md-list-item><i class="material-icons">flag</i> {{selectedContact.countryCode}}</md-list-item>
-	                <md-list-item><i class="material-icons">location_city</i> {{selectedContact.headquarter}}</md-list-item>
-	                <md-list-item><i class="material-icons">email</i> {{selectedContact.email}}</md-list-item>
-	                <md-list-item><i class="material-icons">check_circle</i> {{selectedContact.status}}</md-list-item>
-	                <md-list-item><i class="material-icons">star_rate</i> {{selectedContact.vip}}</md-list-item>
-	                <md-list-item><i class="fa fa-skype fa-lg" aria-hidden="true"></i>&nbsp;{{selectedContact.skype}}</md-list-item>
-	                <md-list-item><i class="material-icons">security</i> {{selectedContact.password}}</md-list-item>
-	                <!--<md-icon md-font-icon="fa fa-skype"></md-icon>-->
-	                <!--<md-list-item><md-icon md-font-icon="material-icons">chat</md-icon>{{selectedContact.skype}}</md-list-item>-->
-	              </md-list>
-	            </md-card-content>
-	          </md-card>
+          <md-card ng-show="!editMode" flex>
+            <md-card-actions layout="row" layout-align="end center">
+              <md-card-icon-actions>
+                <md-button class="md-icon-button" aria-label="icon">
+                  <md-icon class="material-icons">add</md-icon>
+                </md-button>
+                <md-button class="md-icon-button" aria-label="icon">
+                  <md-icon class="material-icons">delete</md-icon>
+                </md-button>
+                <md-button class="md-icon-button" aria-label="icon" ng-show="!editMode && itemList.length > 0" ng-click="editMode=true">
+                  <md-icon class="material-icons">edit_mode</md-icon>
+                </md-button>
+              </md-card-icon-actions>
+            </md-card-actions>
+            <md-card-content>
+              <md-list>
+                <md-list-item><i class="material-icons">account_circle</i> {{selectedContact.role}}</md-list-item>
+                <md-list-item><i class="material-icons">location_on</i> {{selectedContact.address}}</md-list-item>
+                <md-list-item><i class="material-icons">phone</i> {{selectedContact.phoneExt}}</md-list-item>
+                <md-list-item><i class="material-icons">phone</i> {{selectedContact.phone}}</md-list-item>
+                <md-list-item><i class="material-icons">flag</i> {{selectedContact.countryCode}}</md-list-item>
+                <md-list-item><i class="material-icons">location_city</i> {{selectedContact.headquarter}}</md-list-item>
+                <md-list-item><i class="material-icons">email</i> {{selectedContact.email}}</md-list-item>
+                <md-list-item><i class="material-icons">check_circle</i> {{selectedContact.status}}</md-list-item>
+                <md-list-item><i class="material-icons">star_rate</i> {{selectedContact.vip}}</md-list-item>
+                <md-list-item><i class="fa fa-skype fa-lg" aria-hidden="true"></i>&nbsp;{{selectedContact.skype}}</md-list-item>
+                <md-list-item><i class="material-icons">security</i> {{selectedContact.password}}</md-list-item>
+                <!--<md-icon md-font-icon="fa fa-skype"></md-icon>-->
+                <!--<md-list-item><md-icon md-font-icon="material-icons">chat</md-icon>{{selectedContact.skype}}</md-list-item>-->
+              </md-list>
+            </md-card-content>
+          </md-card>
 
-    	      <md-card ng-show="editMode" flex>
-	            <md-card-content>
-	              <md-list>
-	                <md-input-container>
-				      <md-icon class="material-icons">account_circle</md-icon>
-				      <input placeholder="Rol" ng-model="selectedContact.role" type="text" ng-required="true">
+   	      <md-card ng-show="editMode" flex>
+          	<md-card-content>
+	        	<md-list>
+	            	<md-input-container>
+				    	<md-icon class="material-icons">account_circle</md-icon>
+				      	<input placeholder="Rol" ng-model="selectedContact.role" type="text" ng-required="true">
 				    </md-input-container>
-	          <md-input-container>
-				      <md-icon class="material-icons">location_on</md-icon>
-				      <input placeholder="Dirección" ng-model="selectedContact.address" type="text">
+	          		<md-input-container>
+				      	<md-icon class="material-icons">location_on</md-icon>
+				      	<input placeholder="Dirección" ng-model="selectedContact.address" type="text">
 				    </md-input-container>
 
-	          <md-input-container>
-				      <md-icon class="material-icons">phone</md-icon>
-				      <input placeholder="Extensión" ng-model="selectedContact.phoneExt" type="text">
+					<md-input-container>
+				    	<md-icon class="material-icons">phone</md-icon>
+				      	<input placeholder="Extensión" ng-model="selectedContact.phoneExt" type="text">
 				    </md-input-container>
 
-	          <md-input-container>
-				      <md-icon class="material-icons">phone</md-icon>
-				      <input placeholder="Teléfono" ng-model="selectedContact.phone" type="text">
+	          		<md-input-container>
+				    	<md-icon class="material-icons">phone</md-icon>
+				      	<input placeholder="Teléfono" ng-model="selectedContact.phone" type="text">
 				    </md-input-container>
 
-	          <md-input-container>
-				      <md-icon class="material-icons">flag</md-icon>
-				      <input placeholder="País" ng-model="selectedContact.countryCode" type="text">
+	          		<md-input-container>
+				    	<md-icon class="material-icons">flag</md-icon>
+				      	<input placeholder="País" ng-model="selectedContact.countryCode" type="text">
 				    </md-input-container>
 
-	          <md-input-container>
-				      <md-icon class="material-icons">location_city</md-icon>
-				      <input placeholder="Sede" ng-model="selectedContact.headquarter" type="text">
+	          		<md-input-container>
+				    	<md-icon class="material-icons">location_city</md-icon>
+				      	<input placeholder="Sede" ng-model="selectedContact.headquarter" type="text">
 				    </md-input-container>
 
-            <md-input-container>
-				      <md-icon class="material-icons">email</md-icon>
-				      <input placeholder="Email" ng-model="selectedContact.email" type="text">
+            		<md-input-container>
+				    	<md-icon class="material-icons">email</md-icon>
+				      	<input placeholder="Email" ng-model="selectedContact.email" type="text">
 				    </md-input-container>
 
-	          <md-input-container>
-					    <md-checkbox name="vip" ng-model="selectedContact.status" required>
+	          		<md-input-container>
+						<md-checkbox name="vip" ng-model="selectedContact.status" required>
 				      	<md-icon class="material-icons">check_circle</md-icon>
-				        Estado
-				      </md-checkbox>
+				        	Estado
+				      	</md-checkbox>
 				    </md-input-container>
 
-	          <md-input-container class="md-block">
-				        <md-checkbox name="vip" ng-model="selectedContact.vip" required>
-				      		<md-icon class="material-icons">star_rate</md-icon>
+	          		<md-input-container class="md-block">
+				    	<md-checkbox name="vip" ng-model="selectedContact.vip" required>
+			      		<md-icon class="material-icons">star_rate</md-icon>
 				          	VIP
 				        </md-checkbox>
 				    </md-input-container>
 
-	          <md-input-container>
-				      <md-icon class="fa fa-skype fa-lg" aria-hidden="true"></md-icon>
-				      <input placeholder="Skype" ng-model="selectedContact.skype" type="text">
+	          		<md-input-container>
+				    	<md-icon class="fa fa-skype fa-lg" aria-hidden="true"></md-icon>
+				      	<input placeholder="Skype" ng-model="selectedContact.skype" type="text">
 				    </md-input-container>
 
 				    <md-input-container >
-				      <md-icon class="material-icons">security</md-icon>
-				      <input placeholder="Password" ng-model="selectedContact.password" type="password">
+				      	<md-icon class="material-icons">security</md-icon>
+				      	<input placeholder="Password" ng-model="selectedContact.password" type="password">
 				    </md-input-container>
 
-	          </md-card-content>
-	          <md-card-actions layout="row" layout-align="end center">
-	              <md-card-icon-actions>
-	                <md-button class="md-icon-button" aria-label="icon">
-	                  <md-icon class="material-icons">add</md-icon>
-	                </md-button>
-	                <md-button class="md-icon-button" aria-label="icon">
-	                  <md-icon class="material-icons">delete</md-icon>
-	                </md-button>
-	                <md-button class="md-icon-button" aria-label="icon" ng-click="editMode=false">
-	                  <md-icon class="material-icons">cancel</md-icon>
-	                </md-button>
-	              </md-card-icon-actions>
+				</md-card-content>
+	          	<md-card-actions layout="row" layout-align="end center">
+	            	<md-card-icon-actions>
+		                <md-button class="md-icon-button" aria-label="icon">
+		                  <md-icon class="material-icons">add</md-icon>
+		                </md-button>
+		                <md-button class="md-icon-button" aria-label="icon">
+		                  <md-icon class="material-icons">delete</md-icon>
+		                </md-button>
+		                <md-button class="md-icon-button" aria-label="icon" ng-click="editMode=false">
+		                  <md-icon class="material-icons">cancel</md-icon>
+		                </md-button>
+					</md-card-icon-actions>
 	            </md-card-actions>
-	          </md-card>
-	        </md-grid-tile>
-	      </md-grid-list>
-      </div>
+	        	</md-card>
+      		</div>
 		</md-content>
 	</div>
 
