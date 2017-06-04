@@ -10,7 +10,6 @@ import javax.naming.directory.Attributes;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.assertj.core.api.Condition;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,19 +29,13 @@ public class LdapPocApplicationTests {
 	
 	public static final String DOMAIN_DSN = "dc=example,dc=com";
 
+
 	@Autowired
 	LdapTemplate ldapTemplate;
 	
 	@Autowired
 	PersonRepository personRepository;
 	
-	Condition<InetOrgPerson> isPeterParker = new Condition<InetOrgPerson>() {
-		@Override
-		public boolean matches(InetOrgPerson value) {
-			return "Peter Benjamin Parker".equals(value.getDisplayName());
-		}
-	};
-
 	@Test
 	public void contextLoads() {
 	}
@@ -67,7 +60,7 @@ public class LdapPocApplicationTests {
 		
 		assertThat(persons)
 			.hasSize(12)
-			.haveExactly(1, isPeterParker);
+			.haveExactly(1, TestUtils.isPeterParker);
 	}
 	
 	@Test

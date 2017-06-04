@@ -1,0 +1,21 @@
+[
+	{
+		"key": "ldap-server-1",
+		"urls": "ldap://localhost:10389",
+		"username": "uid=admin,ou=system",
+		"password": "secret",
+		"base": "ou=users,dc=example,dc=com"
+	},{
+		"key": "ldap-server-2",
+		"urls": "ldap://localhost:10389",
+		"username": "uid=admin,ou=system",
+		"password": "secret",
+		"base": "ou=users,dc=example,dc=com"
+	},{
+		"key": "ldap-server-3",
+		"urls": "ldap://localhost:10389",
+		"username": "uid=admin,ou=system",
+		"password": "secret",
+		"base": "ou=users,dc=example,dc=com"
+	}
+]
