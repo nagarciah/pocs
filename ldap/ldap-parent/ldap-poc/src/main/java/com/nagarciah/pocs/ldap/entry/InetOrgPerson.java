@@ -8,6 +8,7 @@ import org.springframework.ldap.odm.annotations.Attribute;
 import org.springframework.ldap.odm.annotations.Attribute.Type;
 import org.springframework.ldap.odm.annotations.Entry;
 import org.springframework.ldap.odm.annotations.Id;
+import org.springframework.ldap.odm.annotations.Transient;
 
 
 /**
@@ -38,6 +39,9 @@ import org.springframework.ldap.odm.annotations.Id;
  */
 @Entry(objectClasses = { "top", "person", "organizationalPerson", "inetOrgPerson" })
 public final class InetOrgPerson {
+	
+	@Transient
+	String ldapSourceKey;
 
 	@Id
 	Name dn;
@@ -113,7 +117,9 @@ public final class InetOrgPerson {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("InetOrgPerson [dn=");
+		builder.append("InetOrgPerson [ldapKey=");
+		builder.append(ldapSourceKey);
+		builder.append(", dn=");
 		builder.append(dn);
 		builder.append(", sn=");
 		builder.append(sn);
@@ -211,5 +217,13 @@ public final class InetOrgPerson {
 
 	public void setUserPassword(byte[] userPassword) {
 		this.userPassword = userPassword;
+	}
+
+	public String getLdapSourceKey() {
+		return ldapSourceKey;
+	}
+
+	public void setLdapSourceKey(String ldapSourceKey) {
+		this.ldapSourceKey = ldapSourceKey;
 	}
 }
