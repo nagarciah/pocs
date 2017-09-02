@@ -1,4 +1,4 @@
-package com.pocs.docs.builder.dto;
+package com.pocs.docs.dto;
 
 import java.io.File;
 

@@ -1,4 +1,4 @@
-package com.pocs.docs.builder.conf;
+package com.pocs.docs.conf;
 
 import java.io.File;
 import java.io.IOException;
@@ -26,10 +26,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 
-import com.pocs.docs.builder.batch.CsvRecordFieldSetMapper;
-import com.pocs.docs.builder.batch.ItemProcessorListener;
-import com.pocs.docs.builder.batch.JobListener;
-import com.pocs.docs.builder.batch.PdfProcessor;
+import com.pocs.docs.batch.CsvRecordFieldSetMapper;
+import com.pocs.docs.batch.ItemProcessorListener;
+import com.pocs.docs.batch.JobListener;
+import com.pocs.docs.batch.PdfProcessor;
 
 
 @Configuration

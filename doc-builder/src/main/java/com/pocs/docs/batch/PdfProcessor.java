@@ -1,4 +1,4 @@
-package com.pocs.docs.builder.batch;
+package com.pocs.docs.batch;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import com.pocs.docs.builder.service.PdfGenerator;
+import com.pocs.docs.service.PdfGenerator;
 
 @Component
 public class PdfProcessor implements ItemProcessor<Map<String, Object>, Map<String, Object>> {

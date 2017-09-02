@@ -1,4 +1,4 @@
-package com.pocs.docs.builder.service;
+package com.pocs.docs.service;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -10,7 +10,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import com.pocs.docs.builder.dto.ReportInfo;
+import com.pocs.docs.dto.ReportInfo;
 
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JRException;

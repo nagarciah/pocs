@@ -1,4 +1,4 @@
-package com.pocs.docs.builder.batch;
+package com.pocs.docs.batch;
 
 import java.util.Iterator;
 import java.util.Map.Entry;
@@ -13,7 +13,7 @@ import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.StepExecution;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.pocs.docs.builder.conf.BatchConfig;
+import com.pocs.docs.conf.BatchConfig;
 
 public class JobListener implements JobExecutionListener {
 	private final Log log = LogFactory.getLog(JobListener.class);

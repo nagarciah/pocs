@@ -1,4 +1,4 @@
-package com.pocs.docs.builder.batch;
+package com.pocs.docs.batch;
 
 import java.util.Map;
 
