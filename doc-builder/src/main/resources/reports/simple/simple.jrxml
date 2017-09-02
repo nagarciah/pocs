@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 6.4.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="simple" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2e16c7cf-0d9b-4859-9cf1-f8a6b98f8268">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="Nombre" class="java.lang.String"/>
+	<field name="Barras" class="java.lang.String"/>
+	<field name="Direccion" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="111" splitType="Stretch">
+			<image isUsingCache="true">
+				<reportElement x="0" y="0" width="180" height="70" uuid="80e74daa-ff43-428e-8f66-7f3040f0b294"/>
+				<imageExpression><![CDATA["/home/nelson/Desarrollo/workspaces/sts-3.7.3/doc-builder/src/main/resources/reports/simple/logomodu.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="230" y="0" width="320" height="70" uuid="cfda5958-6f64-4360-93f6-c2bfb822d40e"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ejemplo de Carta Simple]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="340" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="0" y="10" width="544" height="20" uuid="bc62960c-0226-46de-ad8f-cfafb94d41b6"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Bogotá D.C, " + DATEFORMAT(NOW( ), "d 'de' MMMM 'de' YYYY") ]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement x="0" y="50" width="100" height="20" uuid="33f1dec3-e631-45c4-8a38-68e2358c1058"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[ $F{Nombre}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="36" width="100" height="14" uuid="a540d3df-73e1-4b5a-9e8d-574421af3fee"/>
+				<text><![CDATA[Señor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="70" width="544" height="270" uuid="80a348c3-ca43-470e-bdea-d02b33c4bd37"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at suscipit orci. Donec sed odio eu orci vehicula porta commodo at nisl. Donec a aliquam turpis, eget feugiat nibh. Duis eleifend nibh pretium, ultrices nibh a, molestie urna. Vivamus ut nulla rhoncus dolor iaculis semper in sed est. Etiam viverra sapien nec nisl euismod posuere. Quisque facilisis nisl gravida neque ornare malesuada. Nullam sed libero viverra, eleifend sem et, fermentum arcu. Sed nec commodo velit, et mattis elit. Etiam varius metus ligula, at vestibulum purus volutpat sit amet. Integer sed dui lacus. Nunc consequat, tortor at tincidunt porta, risus quam faucibus purus, at hendrerit elit leo in nisl.
+
+Sed ipsum massa, consectetur eget interdum vel, placerat at eros. Phasellus sagittis ipsum eget erat elementum, quis bibendum tellus vulputate. Proin porta nisl ut lacinia auctor. Maecenas ornare lacinia pharetra. Cras pretium odio orci, vitae volutpat diam lobortis sit amet. In porta suscipit semper. Quisque sollicitudin porttitor lorem ac condimentum. Maecenas malesuada augue et blandit elementum. Aliquam vestibulum, tortor sed imperdiet faucibus, massa dolor facilisis metus, sed convallis nibh tortor eget risus. Duis in sem finibus, placerat urna auctor, consequat nisi. Nulla vitae lacus consequat, bibendum nulla a, fermentum leo. Cras commodo eleifend dolor, eu ultrices purus vestibulum id. Vestibulum faucibus risus leo, et fermentum dolor lacinia vel. Suspendisse sodales malesuada suscipit. Duis vitae suscipit augue. Phasellus convallis, diam sit amet blandit semper, orci libero posuere dui, sit amet sodales libero eros quis mauris. ]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="73" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="30" uuid="21eff1b0-9d92-4b6a-80fd-2d7bd60013f5"/>
+				<textElement>
+					<font isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Direccion}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>
