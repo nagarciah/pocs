@@ -10,7 +10,8 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import com.pocs.docs.dto.ReportInfo;
+import com.pocs.docs.dto.InputRecord;
+import com.pocs.docs.dto.OutputRecord;
 
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JRException;
@@ -36,7 +37,7 @@ public class PdfGenerator {
 	String reportMediaType;
 	
 	
-	public ReportInfo createReport(String jrxmlFilename, Map<String, Object> parameters, Map<String, Object> record, String outFileName) throws JRException {
+	public OutputRecord createReport(String jrxmlFilename, Map<String, Object> parameters, InputRecord item, String outFileName) throws JRException {
 		
 		File jrxmlFile = new File(reportDir, jrxmlFilename);
 
@@ -58,7 +59,7 @@ public class PdfGenerator {
 		// Llena los datos del reporte
 		
 		Collection<Map<String, ?>> wrappedRecord = new ArrayList<>();
-		wrappedRecord.add(record);
+		wrappedRecord.add(item.getFields());
 		
 		JRDataSource mapDataSource = new JRMapCollectionDataSource(wrappedRecord);
 		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, mapDataSource);
@@ -67,7 +68,7 @@ public class PdfGenerator {
 		JasperExportManager.exportReportToPdfFile(jasperPrint, outputFilename);
 		log.info("Reporte generado en '" + outputFilename + "'");
 		
-		return new ReportInfo(new File(outputFilename), reportMediaType);
+		return new OutputRecord(new File(outputFilename), reportMediaType);
 
 	}
 	

@@ -2,11 +2,11 @@ package com.pocs.docs.dto;
 
 import java.io.File;
 
-public class ReportInfo {
+public class OutputRecord {
 	File file;
 	String mediaType;
 	
-	public ReportInfo(File file, String mediaType) {
+	public OutputRecord(File file, String mediaType) {
 		super();
 		this.file = file;
 		this.mediaType = mediaType;

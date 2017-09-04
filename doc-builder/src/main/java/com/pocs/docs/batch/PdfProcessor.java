@@ -2,7 +2,6 @@ package com.pocs.docs.batch;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.logging.Log;
@@ -12,10 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import com.pocs.docs.dto.InputRecord;
+import com.pocs.docs.dto.OutputRecord;
 import com.pocs.docs.service.PdfGenerator;
 
-@Component
-public class PdfProcessor implements ItemProcessor<Map<String, Object>, Map<String, Object>> {
+//@Component
+public class PdfProcessor implements ItemProcessor<InputRecord, OutputRecord> {
 	
 	private final static Log log = LogFactory.getLog(PdfProcessor.class);
 
@@ -26,12 +27,12 @@ public class PdfProcessor implements ItemProcessor<Map<String, Object>, Map<Stri
 	protected File outputDir;
 	
 	@Override
-	public Map<String, Object> process(Map<String, Object> item) throws Exception {
+	public OutputRecord process(InputRecord item) throws Exception {
 		checkDir(); // TODO Mover esta linea a un inicializador o constructor que se ejecute una sola vez
 		
-		pdfService.createReport("simple.jrxml", null, item, (String)item.get("outFileName"));
+		OutputRecord out = pdfService.createReport("simple.jrxml", null, item, item.getOutputFileName());
 		
-		return item;
+		return out;
 	}
 	
 	private void checkDir() throws IOException{

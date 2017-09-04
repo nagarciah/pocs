@@ -30,6 +30,8 @@ import com.pocs.docs.batch.CsvRecordFieldSetMapper;
 import com.pocs.docs.batch.ItemProcessorListener;
 import com.pocs.docs.batch.JobListener;
 import com.pocs.docs.batch.PdfProcessor;
+import com.pocs.docs.dto.InputRecord;
+import com.pocs.docs.dto.OutputRecord;
 
 
 @Configuration
@@ -66,7 +68,7 @@ public class BatchConfig extends DefaultBatchConfigurer {
 	@Autowired
 	public Job mainJob(PdfProcessor pdfProcessor) throws IOException{
 		Step step = stepBuilderFactory.get(CSV_PROCESS_STEP_NAME)
-			.<Map<String, Object>, Map<String, Object>>chunk(1)
+			.<InputRecord, OutputRecord>chunk(1)
 			.reader(reader())
 			.processor(pdfProcessor)
 			.writer(writer())
@@ -86,8 +88,8 @@ public class BatchConfig extends DefaultBatchConfigurer {
 
 
 	// TODO Podr[ia cambiarse por un lector de Mongo o DB SQL, cola, usando factory
-	public ItemReader<Map<String, Object>> reader(){
-		FlatFileItemReader<Map<String, Object>> reader = new FlatFileItemReader<Map<String, Object>>();
+	public ItemReader<InputRecord> reader(){
+		FlatFileItemReader<InputRecord> reader = new FlatFileItemReader<>();
 		reader.setLinesToSkip(inputlinesToSkip); // Omite las N primeras líneas que se asume, pueden ser títulos
 		//reader.setResource(new FileSystemResource(inputFile));
 		reader.setResource(new ClassPathResource("data.csv"));
@@ -95,8 +97,8 @@ public class BatchConfig extends DefaultBatchConfigurer {
 		return reader;
 	}
 
-	public LineMapper<Map<String, Object>> lineMapper() {
-		DefaultLineMapper<Map<String, Object>> lineMapper = new DefaultLineMapper<Map<String, Object>>();
+	public LineMapper<InputRecord> lineMapper() {
+		DefaultLineMapper<InputRecord> lineMapper = new DefaultLineMapper<>();
 
 		DelimitedLineTokenizer lineTokenizer = new DelimitedLineTokenizer();
 		lineTokenizer.setDelimiter(csvInputDelimiter);
@@ -110,10 +112,10 @@ public class BatchConfig extends DefaultBatchConfigurer {
 	}
 
     // TODO Y este deber[ia enviar un mensaje a una cola con los datos del PDF
-    public ItemWriter<Map<String, Object>> writer() throws IOException {
-    	return new ItemWriterAdapter<Map<String, Object>>(){
+    public ItemWriter<OutputRecord> writer() throws IOException {
+    	return new ItemWriterAdapter<OutputRecord>(){
 			@Override
-			public void write(List<? extends Map<String, Object>> items) throws Exception {
+			public void write(List<? extends OutputRecord> items) throws Exception {
 				items.forEach(i -> log.info("Escribiendo item {}", i));
 			}
     	};
