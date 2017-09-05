@@ -15,7 +15,7 @@
 		<band height="111" splitType="Stretch">
 			<image isUsingCache="true">
 				<reportElement x="0" y="0" width="180" height="70" uuid="80e74daa-ff43-428e-8f66-7f3040f0b294"/>
-				<imageExpression><![CDATA["/home/nelson/Desarrollo/workspaces/sts-3.7.3/doc-builder/src/main/resources/reports/simple/logomodu.png"]]></imageExpression>
+				<imageExpression><![CDATA["/home/nelson/Desarrollo/github/nagarciah/pocs/doc-builder/src/main/resources/reports/simple/logomodu.png"]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="230" y="0" width="320" height="70" uuid="cfda5958-6f64-4360-93f6-c2bfb822d40e"/>
@@ -59,7 +59,7 @@ Sed ipsum massa, consectetur eget interdum vel, placerat at eros. Phasellus sagi
 	</detail>
 	<pageFooter>
 		<band height="73" splitType="Stretch">
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="0" y="0" width="100" height="30" uuid="21eff1b0-9d92-4b6a-80fd-2d7bd60013f5"/>
 				<textElement>
 					<font isItalic="true"/>

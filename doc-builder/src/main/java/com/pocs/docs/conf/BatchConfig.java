@@ -34,8 +34,8 @@ import com.pocs.docs.dto.InputRecord;
 import com.pocs.docs.dto.OutputRecord;
 
 
-@Configuration
-@EnableBatchProcessing
+//@Configuration
+//@EnableBatchProcessing
 public class BatchConfig extends DefaultBatchConfigurer {
 	
 	public static final String MAIN_JOB_NAME = "fileGeneratorJob";

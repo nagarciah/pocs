@@ -1,8 +1,12 @@
 package com.pocs.docs.dto;
 
+import java.io.Serializable;
 import java.util.Map;
 
-public class InputRecord {
+public class InputRecord implements Serializable {
+
+	private static final long serialVersionUID = -8801035960284485581L;
+
 	public static enum InputSource {
 		QUEUE, CSV, WS
 	}
