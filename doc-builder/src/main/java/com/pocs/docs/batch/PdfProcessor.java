@@ -15,7 +15,7 @@ import com.pocs.docs.dto.InputRecord;
 import com.pocs.docs.dto.OutputRecord;
 import com.pocs.docs.service.PdfGenerator;
 
-//@Component
+@Component
 public class PdfProcessor implements ItemProcessor<InputRecord, OutputRecord> {
 	
 	private final static Log log = LogFactory.getLog(PdfProcessor.class);
@@ -30,7 +30,7 @@ public class PdfProcessor implements ItemProcessor<InputRecord, OutputRecord> {
 	public OutputRecord process(InputRecord item) throws Exception {
 		checkDir(); // TODO Mover esta linea a un inicializador o constructor que se ejecute una sola vez
 		
-		OutputRecord out = pdfService.createReport("simple.jrxml", null, item, item.getOutputFileName());
+		OutputRecord out = pdfService.createReport(item.getTemplateId(), null, item, item.getOutputFileName());
 		
 		return out;
 	}

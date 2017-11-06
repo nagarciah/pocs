@@ -38,7 +38,7 @@ public class PdfGenerationTests {
         InputRecord msg = new InputRecord(
         		InputSource.WS, 
         		OutputTarget.CSV, 
-        		"simle.jrxml", 
+        		"simple.jrxml", 
         		UUID.randomUUID().toString(), 
         		fields);
         

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:batch="http://www.springframework.org/schema/batch"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd">
+
+	<!-- ======================================================================== 
+		Este bean implementa el patrón composite para seleccionar dinámicamente la 
+		pareja de beans (tokenizer y fieldMapper) que mapea cada tipo de línea del 
+		archivo a un objeto adecuado. Cada línea puede generar un tipo de objeto 
+		diferente -->
+	<bean id="cupoLineMapper"
+		class="org.springframework.batch.item.file.mapping.PatternMatchingCompositeLineMapper">
+		<property name="tokenizers">
+			<map>
+				<entry key="${encabezado.patron}" value-ref="encabezadoTokenizer" />
+				<entry key="${detalle.patron}" value-ref="detalleTokenizer" />
+				<entry key="${mensajes.patron}" value-ref="mensajesTokenizer" />
+				<entry key="${resumen.patron}" value-ref="resumenTokenizer" />
+				<entry key="${colilla.patron}" value-ref="colillaTokenizer" />
+				<entry key="${saldosMagipuntos.patron}" value-ref="saldosMagipuntosTokenizer" />
+			</map>
+		</property>
+		<property name="fieldSetMappers">
+			<map>
+				<entry key="${encabezado.patron}" value-ref="encabezadoMapper" />
+				<entry key="${detalle.patron}" value-ref="detalleMapper" />
+				<entry key="${mensajes.patron}" value-ref="mensajesMapper" />
+				<entry key="${resumen.patron}" value-ref="resumenMapper" />
+				<entry key="${colilla.patron}" value-ref="colillaMapper" />
+				<entry key="${saldosMagipuntos.patron}" value-ref="saldosMagipuntosMapper" />
+			</map>
+		</property>
+	</bean>
+
+	<!-- ======================================================================== 
+		Estos son los beans que dividen cada línea en un conjunto de campos -->
+	<bean id="encabezadoTokenizer"
+		class="org.springframework.batch.item.file.transform.FixedLengthTokenizer">
+		<property name="names" value="${encabezado.columnas}" />
+		<property name="columns" value="${encabezado.rangos}" />
+		<property name="strict" value="false" />
+	</bean>
+	<bean id="detalleTokenizer"
+		class="org.springframework.batch.item.file.transform.FixedLengthTokenizer">
+		<property name="names" value="${detalle.columnas}" />
+		<property name="columns" value="${detalle.rangos}" />
+		<property name="strict" value="false" />
+	</bean>
+	<bean id="mensajesTokenizer"
+		class="org.springframework.batch.item.file.transform.FixedLengthTokenizer">
+		<property name="names" value="${mensajes.columnas}" />
+		<property name="columns" value="${mensajes.rangos}" />
+		<property name="strict" value="false" />
+	</bean>
+	<bean id="resumenTokenizer"
+		class="org.springframework.batch.item.file.transform.FixedLengthTokenizer">
+		<property name="names" value="${resumen.columnas}" />
+		<property name="columns" value="${resumen.rangos}" />
+		<property name="strict" value="false" />
+	</bean>
+	<bean id="colillaTokenizer"
+		class="org.springframework.batch.item.file.transform.FixedLengthTokenizer">
+		<property name="names" value="${colilla.columnas}" />
+		<property name="columns" value="${colilla.rangos}" />
+		<property name="strict" value="false" />
+	</bean>
+	<bean id="saldosMagipuntosTokenizer"
+		class="org.springframework.batch.item.file.transform.FixedLengthTokenizer">
+		<property name="names" value="${saldosMagipuntos.columnas}" />
+		<property name="columns" value="${saldosMagipuntos.rangos}" />
+		<property name="strict" value="false" />
+	</bean>
+
+	<!-- ======================================================================== 
+		Estos beans convierten cada conjunto de campos en un objeto -->
+	<bean id="encabezadoMapper"
+		class="org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper">
+		<property name="prototypeBeanName" value="encabezado" />
+	</bean>
+	<bean id="detalleMapper"
+		class="org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper">
+		<property name="prototypeBeanName" value="detalle" />
+	</bean>
+	<!-- FIXME -->
+	<bean id="mensajesMapper"
+		class="org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper">
+		<property name="prototypeBeanName" value="mensajes" />
+	</bean>
+	<bean id="resumenMapper"
+		class="org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper">
+		<property name="prototypeBeanName" value="resumen" />
+	</bean>
+	<bean id="colillaMapper"
+		class="org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper">
+		<property name="prototypeBeanName" value="colilla" />
+	</bean>
+	<bean id="saldosMagipuntosMapper"
+		class="org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper">
+		<property name="prototypeBeanName" value="saldosMagipuntos" />
+	</bean>
+
+	<!-- ======================================================================== 
+		Este bean es necesario para poder usar la sintaxis "min-max" en las porpiedades 
+		que definen los rangos de caracteres para cada columna. Es requerido por 
+		los Tokenizers -->
+	<bean id="customEditorConfigurer"
+		class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+		<property name="customEditors">
+			<map>
+				<entry key="org.springframework.batch.item.file.transform.Range[]"
+					value="org.springframework.batch.item.file.transform.RangeArrayPropertyEditor" />
+			</map>
+		</property>
+	</bean>
+
+
+</beans>

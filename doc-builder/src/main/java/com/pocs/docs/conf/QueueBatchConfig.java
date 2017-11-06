@@ -8,9 +8,9 @@ import org.springframework.context.annotation.ImportResource;
  * @author nelson
  *
  */
-@Configuration
+/*@Configuration
 @EnableBatchProcessing
 @ImportResource("classpath:/spring/rabbitmq-job.xml")
-public class QueueBatchConfig {
+*/public class QueueBatchConfig {
 	
 }
