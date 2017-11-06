@@ -1,0 +1,1 @@
+curl   -X POST   -H"authorization: Basic aHRtbDU6cGFzc3dvcmQ="   -F"password=spring"   -F"client_secret=password"   -F"client_id=html5"   -F"username=jlong"   -F"grant_type=password"   -F"scope=openid"   http://localhost:8080/uaa/oauth/token |json_pp
