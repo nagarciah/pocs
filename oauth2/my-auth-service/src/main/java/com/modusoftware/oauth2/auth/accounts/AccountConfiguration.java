@@ -7,6 +7,8 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 public class AccountConfiguration {
@@ -29,5 +31,10 @@ public class AccountConfiguration {
                             AuthorityUtils.createAuthorityList("ROLE_ADMIN", "ROLE_USER"));
                 })
                 .orElseThrow(() -> new UsernameNotFoundException(String.format("username %s not found!", username)));
+    }
+    
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 }
